@@ -11,13 +11,13 @@ body:
     id: details
     attributes:
       label: details
-      description: add details about the story
+      placeholder: add details about the story
     validations:
       required: true
   - type: textarea
     id: acceptance-criteria
     attributes:
       label: acceptance criteria
-      description: what is delivered for this story
+      placeholder: what is delivered for this story
     validations:
       required: true
