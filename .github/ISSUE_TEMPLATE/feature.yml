@@ -14,7 +14,7 @@ body:
       description: add details about the feature
     validations:
       required: true
-    - type: textarea
+  - type: textarea
     id: acceptance-criteria
     attributes:
       label: acceptance criteria
