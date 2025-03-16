@@ -1,0 +1,23 @@
+name: story
+description: logical unit of work under a parent feature
+title: "[story]: "
+labels: ["documentation"]
+projects: ["commuter-copilot/commuter-copilot"]
+assignees:
+  - a-beacon42
+type: "story"
+body:
+  - type: textarea
+    id: details
+    attributes:
+      label: details
+      description: add details about the feature
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: acceptance criteria
+      description: what is delivered for this feature
+    validations:
+      required: true
