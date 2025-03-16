@@ -11,6 +11,6 @@ body:
     id: details
     attributes:
       label: details
-      description: add details about the task
+      placeholder: add details about the task
     validations:
       required: false
