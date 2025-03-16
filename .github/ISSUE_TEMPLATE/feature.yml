@@ -6,6 +6,8 @@ projects: ["commuter-copilot/commuter-copilot"]
 assignees:
   - a-beacon42
 type: "feature"
+status: "new"
+milestone: "mvp"
 body:
   - type: textarea
     id: details
