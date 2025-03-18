@@ -1,5 +1,5 @@
 name: bug
-description: File a bug report.
+description: file a bug report.
 title: "[bug]: "
 labels: ["bug"]
 projects: ["commuter-copilot/commuter-copilot"]
