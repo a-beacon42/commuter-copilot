@@ -1,0 +1,65 @@
+name: PR Conflict Check and Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - features
+
+jobs:
+  conflict-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Fetch PR mergeable state
+        id: merge_check
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // Refetch the PR to ensure mergeable_state is updated
+            const pr = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            });
+            core.info(`Mergeable state: ${pr.data.mergeable_state}`);
+            return pr.data.mergeable_state;
+          result-encoding: string
+
+      - name: Notify PR creator if there are conflicts
+        if: steps.merge_check.outputs.result != 'clean'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const prCreator = context.payload.pull_request.user.login;
+            const message = `@${prCreator} This PR cannot be merged automatically because it has conflicts. Please resolve the conflicts and update the PR.`;
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: message
+            });
+            core.info('Conflict notification posted.');
+
+      - name: Auto-merge the PR (if no conflicts)
+        if: steps.merge_check.outputs.result == 'clean'
+        uses: peter-evans/merge-pull-request@v2
+        with:
+          merge_method: merge
+          commit_title: "Auto-merged PR as it had no conflicts"
+          # Ensure GITHUB_TOKEN has the necessary permissions
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create PR from features to development
+        if: steps.merge_check.outputs.result == 'clean'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto merge from features to development"
+          title: "Auto PR: Merge features into development"
+          body: "This PR was created automatically after merging into features."
+          base: development
+          head: features
