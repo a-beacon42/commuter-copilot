@@ -10,12 +10,12 @@
 LAYOUT_LANDSCAPE()
 
 left header <font size=12>    Alex Beacon %date("yyyy-MM-dd")
-title ETL: Index Technical Documentation
+title ETL: Index Documentation
 
 Container(az_docs, "Azure Documentation", $sprite="azure")
 ContainerQueue(etl_stage, "ETL: staging", $sprite="python") #Gold
 ContainerQueue(etl_index, "ETL: indexing", $sprite="python") #Gold
-ContainerDb(local, "Local Storage", "staging", $sprite="apple") #SlateGray
+ContainerDb(local, "Staging", "local storage", $sprite="apple") #SlateGray
 ContainerDb(elastic, "Elasticsearch", "Docker volume", $sprite="elasticsearch") #LightSeaGreen
 
 Rel(etl_stage, az_docs, "get raw docs")
