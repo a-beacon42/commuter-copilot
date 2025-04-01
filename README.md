@@ -6,9 +6,17 @@ is a RAG-based, offline coding assistant. Inspiration for this project came when
 
 ## etl
 ![ETL System](/docs/images/data_ingestion_system.png)
-### step 1: get Azure raw docs
+### step 0: shallow clone of Azure repo  
+- only runs once
+- clone main branch only to save space; trying to clone the whole repo kept failing
+- manual step:  
+  `> cd path/to/data/raw/ && git clone --branch main --single-branch https://github.com/MicrosoftDocs/azure-docs.git`
+- writes to:  
+  `commuter_copilot/local_files/data/raw/`  
+  
+### step 1: update Azure raw docs
  - pull updates from [MicrosoftDocs/azure-docs](https://github.com/MicrosoftDocs/azure-docs) to my local storage.  
- - scripted: commuter_copilot/data/etl/extract/update_local_azure_docs_raw.sh
+ - scripted: `commuter_copilot/data/etl/extract/run_etl_azure_docs_raw.sh`
 
 ### step 2: process raw docs
 - find all md files in repo
@@ -32,6 +40,7 @@ is a RAG-based, offline coding assistant. Inspiration for this project came when
 - schedule triggers for automated batch updates
 - incorporate into main pipeline for regular refresh of search index  
   
+  
 <hr>
 <hr>  
   
@@ -39,5 +48,17 @@ is a RAG-based, offline coding assistant. Inspiration for this project came when
 ### retrieve docs
 ### augment prompt
 ### generate response
-
+  
+  
+<hr>
+<hr>  
+  
 ## ui
+<hr>
+<hr>  
+  
+## logging/monitoring
+  
+<hr>
+<hr>  
+  
