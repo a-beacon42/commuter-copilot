@@ -1,4 +1,4 @@
-@startuml etl
+@startuml data_ingestion_system
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 !$ICONURL = "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons"
 !include $ICONURL/common.puml
@@ -10,7 +10,7 @@
 LAYOUT_LANDSCAPE()
 
 left header <font size=12>    Alex Beacon | %date("yyyy-MM-dd") | v1.0.0</font>
-title ETL: Index Documentation
+title Data Ingestion [System]
 
 Container(az_docs, "Azure Documentation", $sprite="azure")
 ContainerQueue(etl_stage, "ETL: staging", $sprite="python") #Gold
