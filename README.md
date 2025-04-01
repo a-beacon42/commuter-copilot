@@ -16,7 +16,7 @@ is a RAG-based, offline coding assistant. Inspiration for this project came when
   
 ### step 1: update Azure raw docs
  - pull updates from [MicrosoftDocs/azure-docs](https://github.com/MicrosoftDocs/azure-docs) to my local storage.  
- - scripted: `commuter_copilot/data/etl/extract/run_etl_azure_docs_raw.sh`
+ - [buggy] scripted: `commuter_copilot/data/etl/extract/run_etl_azure_docs_raw.sh`
 
 ### step 2: process raw docs
 - find all md files in repo

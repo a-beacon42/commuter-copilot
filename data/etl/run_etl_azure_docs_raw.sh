@@ -2,6 +2,7 @@
 # etl_update_local_azure_docs_raw.sh
 # This script updates commuter-copilot's local copy of the azure-docs repository
 # by merging in changes from the upstream MicrosoftDocs repository on GitHub to the main local branch.
+# todo: move out of commuter-copilot repo. this doesn't work as is
 # todo: incorporate this script into main pipeline
 # todo: add more repos - architecture-center, azure-docs-sdk-python, azure-docs-cli, +580 more
 # todo: add logic -->
