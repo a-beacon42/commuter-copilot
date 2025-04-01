@@ -10,7 +10,7 @@ error_exit() {
     exit 1
 }
 
-TARGET_DIR="data/raw/azure-docs"
+TARGET_DIR="Users/alex/Desktop/code_projects/commuter_copilot/local_files/data/raw/azure-docs"
 
 if [ -d "$TARGET_DIR" ]; then
     echo "fetching latest changes from upstream's main branch"
