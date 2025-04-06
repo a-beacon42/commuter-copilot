@@ -2,17 +2,17 @@
 is a RAG-based, offline coding assistant. Inspiration for this project came when my commute changed & I found the new route had terrible cell/hotspot/wifi service. My solution was to develop a containerized app so I can run an LLM locally. To improve responses, I indexed tech documentation that was published after the model's knowledge cutoff.  
 
 ## design draft
-![Commuter Copilot](/docs/images/commuter_copilot_design_draft.jpg)
+![Commuter Copilot](docs/images/commuter_copilot_design_draft.jpg)
 
 ## etl
-![ETL System](/docs/images/data_ingestion_system.png)
+![ETL System](docs/images/data_ingestion_system.png)
 ### step 0: shallow clone of Azure repo  
 - only runs once
-- clone main branch only to save space; trying to clone the whole repo kept failing
+- clone top level of main branch only - don't need commit history or other branches for anything at this time
 - manual step:  
-  `> cd path/to/data/raw/ && git clone --branch main --single-branch https://github.com/MicrosoftDocs/azure-docs.git`
+  `> git clone --branch main --single-branch --depth 1 https://github.com/MicrosoftDocs/azure-docs.git`
 - writes to:  
-  `commuter_copilot/local_files/data/raw/`  
+  `../azure-docs`  
   
 ### step 1: update Azure raw docs
  - pull updates from [MicrosoftDocs/azure-docs](https://github.com/MicrosoftDocs/azure-docs) to my local storage.  
