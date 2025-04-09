@@ -1,0 +1,26 @@
+@startuml data_ingestion_system
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!$ICONURL = "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons"
+!include $ICONURL/common.puml
+!include $ICONURL/devicons/python.puml
+!include $ICONURL/devicons2/elasticsearch.puml
+!include $ICONURL/devicons2/azure.puml
+!include $ICONURL/font-awesome/apple.puml
+
+LAYOUT_LANDSCAPE()
+
+left header <font size=12>    Alex Beacon | %date("yyyy-MM-dd") | v1.0.0</font>
+title Data Ingestion [System]
+
+Container(az_docs, "Azure Documentation", $sprite="azure")
+ContainerQueue(etl_stage, "ETL: staging", $sprite="python") #Gold
+ContainerQueue(etl_index, "ETL: indexing", $sprite="python") #Gold
+ContainerDb(local, "Staging", "local storage", $sprite="apple") #SlateGray
+ContainerDb(elastic, "Elasticsearch", "Docker volume", $sprite="elasticsearch") #LightSeaGreen
+
+Rel(etl_stage, az_docs, "get raw docs")
+Rel(etl_stage, local, "stage raw docs")
+Rel(etl_index, local, "get staged docs")
+Rel(etl_index, elastic, "index docs")
+
+@enduml
