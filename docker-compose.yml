@@ -1,0 +1,24 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    container_name: elasticsearch
+    volumes:
+      - azure_docs:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  ollama: # set Docker memory limit to 24GB to run R1-14B
+    image: ollama/ollama
+    container_name: ollama-deepseek-r1-14b
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+volumes:
+  azure_docs:
+    external: true
+  ollama_data:
+    external: true
