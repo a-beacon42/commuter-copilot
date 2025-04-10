@@ -10,10 +10,9 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
-  ollama:
+  ollama: # set Docker memory limit to 24GB to run R1-14B
     image: ollama/ollama
     container_name: ollama-deepseek-r1-14b
-    memory: 16g
     volumes:
       - ollama_data:/root/.ollama
     ports:
